@@ -40,7 +40,7 @@
 
 - `ubuntu-base.yml`
   - Bootstraps the target with Python2 minimal by including `bootstrap-ubuntu.yml`
-  - Includes the `kadenlnelson.ansible_role_ubuntu_base` role
+  - Includes the `vermilion_tech.ansible_role_ubuntu_base` role
   - Targets Droplets tagged `ubuntu-base`
 
 - `loadbalancers.yml`

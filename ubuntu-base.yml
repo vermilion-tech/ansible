@@ -10,4 +10,4 @@
   become_user: root
 
   roles:
-    - { role: 'kadenlnelson.ansible_role_ubuntu_base', tags: 'ubuntu-base' }
+    - { role: 'vermilion_tech.ansible_role_ubuntu_base', tags: 'ubuntu-base' }
