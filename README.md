@@ -1,58 +1,50 @@
 # Vermilion Tech's Ansible Repository
 
-- [Installing ansible](#installing-ansible)
+---
 
-### Installing Ansible for use locally
-Using `pip`
-```bash
-pip install ansible
-```
+### Setup
+1. Install Ansible
 
-We recommend disabling host key checking
-`https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html#host-key-checking`
+`https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html`
 
-We also recommend setting up a default user to connect with ansible
+- We also recommend disabling host key checking
+  - `https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html#host-key-checking`
 
-```bash
-$ vim ~/.ansible.cfg
-...
-[defaults]
-remote_user = root
-private_key_file = ~/.ssh/kaden@vermilion.tech.id_rsa
-...
-```
+- We also recommend setting up a default user to connect with ansible
 
-### Ansible Role Descriptions
+  - ```bash
+    $ vim ~/.ansible.cfg
+    ...
+    [defaults]
+    remote_user = root
+    private_key_file = ~/.ssh/kaden@vermilion.tech.id_rsa
+    ...
+    ```
 
-`vermilion-tech.ubuntu-base`
-- Upgrades Packages
-- Installs `python-pip`
-- Installs python packages `docker` and `docker-compose`
-- Uses `apt` `autoremove` and `autoclean`
+2. Clone the repository
+
+`$ git clone git@github.com:vermilion-tech/ansible.git`
+
+3. Install Ansible Roles from Ansible Galaxy
+
+  - `$ ansible-galaxy install -r requirements.yml`
+
+4. Execute Master Playbook
+
+  - `$ ansible-playbook -i digital_ocean.py playbook.yml`
 
 ### Playbooks Descriptions
 
-`playbooks/ubuntu-base`
-- Includes the `vermilion-tech.ubuntu-base` role
-- Includes the `geerlingguy.docker` role
-- Bootstraps the target with Python2 minimal by including `bootstrap-ubuntu.yml`
+- `playbook.yml`
+  - Master playbook that includes both `ubuntu-base.yml` and `loadbalancers.yml` playbooks
 
-`bootstrap-ubuntu.yml`
-There may be some cases where Python isn't already installed on the server/target machine. We provide a playbook to bootstrap the machine.
+- `ubuntu-base.yml`
+  - Bootstraps the target with Python2 minimal by including `bootstrap-ubuntu.yml`
+  - Includes the `kadenlnelson.ansible_role_ubuntu_base` role
+  - Targets Droplets tagged `ubuntu-base`
 
-- Installs Python2 minimal on Ubuntu targets
-
-### Examples
-
-Use playbook `ubuntu-base` on a single host target using a custom ssh username/private_key_file
-```bash
-$ ansible-playbook -i elk.vermilion.tech, ubuntu-base.yml -u knelson --key-file=~/.ssh/kaden@vermilion.tech.id_rsa
-```
-
-Use playbook `ubuntu-base` on DigitalOcean droplets tagged `ubuntu-base`
-```bash
-$ ansible-playbook -i digital_ocean.py -l ubuntu-base ubuntu-base.yml
-```
+- `loadbalancers.yml`
+  - Installs Traefik as a Docker container on Droplets tagged `loadbalancers`
 
 ### References
 - https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html

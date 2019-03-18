@@ -1,10 +1,13 @@
 ---
+# Targets instances tagged `ubuntu-base`
 
 - name: Bootstrap Ubuntu
   import_playbook: bootstrap-ubuntu.yml
 
-- hosts: all
+- hosts: ubuntu-base
+
   become: yes
   become_user: root
+
   roles:
-    - { role: 'ubuntu-base', tags: 'ubuntu-base' }
+    - { role: 'kadenlnelson.ansible_role_ubuntu_base', tags: 'ubuntu-base' }

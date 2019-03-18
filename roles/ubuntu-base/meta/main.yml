@@ -1,5 +1,0 @@
----
-# Requires Docker
-
-dependencies:
-  - role: geerlingguy.docker

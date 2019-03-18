@@ -1,0 +1,8 @@
+---
+# Master Playbook
+
+- name: Ubuntu Base
+  import_playbook: ubuntu-base.yml
+
+- name: Loadbalancers
+  import_playbook: loadbalancers.yml

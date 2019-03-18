@@ -1,0 +1,10 @@
+---
+# Installs Traefik on Instances tagged `loadbalancers`
+
+- hosts: loadbalancers
+
+  become: yes
+  become_user: root
+
+  roles:
+    - { role: 'kadenlnelson.ansible_role_docker_traefik'}
