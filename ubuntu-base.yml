@@ -1,0 +1,10 @@
+---
+
+- name: Bootstrap Ubuntu
+  import_playbook: bootstrap-ubuntu.yml
+
+- hosts: all
+  become: yes
+  become_user: root
+  roles:
+    - { role: 'ubuntu-base', tags: 'ubuntu-base' }

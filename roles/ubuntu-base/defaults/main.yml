@@ -1,0 +1,13 @@
+apt:
+  upgrade: dist
+
+  autoremove: yes
+  autoclean: yes
+
+  install_packages:
+    - python-pip
+
+pip:
+  install_packages:
+    - docker
+    - docker-compose
